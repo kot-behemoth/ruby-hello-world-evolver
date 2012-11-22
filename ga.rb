@@ -115,7 +115,7 @@ def mutate( pool, target )
   pool.each do |c, fitness|
     mut_c = String.new c
 
-    if RAND.rand <= 0.05 # 5% chance
+    if RAND.rand <= 0.01 # 1% chance
       mutation_pos = RAND.rand(0...(c.length))
       mut_c[mutation_pos] = DICTIONARY.sample
     end
