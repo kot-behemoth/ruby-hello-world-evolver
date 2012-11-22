@@ -76,6 +76,8 @@ end
 def crossover( pool, target )
   crossed_pool = Array.new
 
+  # PROBLEM HERE!!!!
+
   # p1, p2 - parents
   # c1, c2 - children
   pool.each do |p1, fitness|
