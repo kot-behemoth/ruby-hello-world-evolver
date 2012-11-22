@@ -1,7 +1,7 @@
 #! usr/local/ruby
 
 POPULATION_SIZE = 1000
-POOL_SIZE = Integer( POPULATION_SIZE * 0.2 ) # pool is 5% of population
+POOL_SIZE = Integer( POPULATION_SIZE * 0.3 ) # pool is 5% of population
 RAND = Random.new
 DICTIONARY = ('a'..'z').to_a << ' '
 
@@ -115,7 +115,7 @@ def mutate( pool, target )
   pool.each do |c, fitness|
     mut_c = String.new c
 
-    if RAND.rand <= 0.1 # 5% chance
+    if RAND.rand <= 0.05 # 5% chance
       mutation_pos = RAND.rand(0...(c.length))
       mut_c[mutation_pos] = DICTIONARY.sample
     end
@@ -145,4 +145,4 @@ def done?( population )
   end
 end
 
-ga 'hello world'
+ga 'hello'
