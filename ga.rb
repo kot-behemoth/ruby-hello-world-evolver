@@ -16,8 +16,8 @@ def ga( target = 'hello' )
   while !done? pop_fit
     pool, pop_fit = select_pool pop_fit, counter
     pool = crossover pool, target
-    pool = mutate pool, target
     pop_fit = merge pool, pop_fit
+    pop_fit = mutate pop_fit, target
     counter += 1
   end
 end
