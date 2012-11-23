@@ -54,8 +54,6 @@ def fitness( candidate, target )
 
   total
 end
-#fitness( 'hello world', 'hello world' )
-#fitness( 'gello world', 'hello world' )
 
 # INPUT population is an array of value-fitness tuples
 def select_pool( population, counter )
@@ -73,7 +71,6 @@ def select_pool( population, counter )
 
   return pool, pop
 end
-#pool, pop = select_pool( p )
 
 def crossover( pool, target )
   crossed_pool = Array.new
@@ -127,7 +124,6 @@ def crossover( pool, target )
   #end
   #crossed_pool
 end
-#crossover(pop, 'hello world')
 
 def cross( p1, p2 )
   length = p1.length
@@ -158,7 +154,6 @@ def mutate( pool, target )
 
   pool
 end
-#mutate pop
 
 def merge( pool, population )
   (pool + population).shuffle
