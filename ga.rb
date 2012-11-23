@@ -76,20 +76,25 @@ end
 #pool, pop = select_pool( p )
 
 def crossover( pool, target )
-  temp = Array.new(pool).shuffle
   crossed_pool = Array.new
+  temp = Array.new(pool)#.shuffle!
 
   # PROBLEM HERE!!!!
 
   # p1, p2 - parents
   # c1, c2 - children
   while temp.size > 1
-    p1 = temp.shift[0]
-    p2 = temp.shift[0]
+    if RAND.rand <= 0.7 # 70% chance
+      p1 = temp.shift[0]
+      p2 = temp.shift[0]
 
-    c1, c2 = cross( p1, p2 )
-    crossed_pool << [c1, fitness(c1, target)]
-    crossed_pool << [c2, fitness(c2, target)]
+      c1, c2 = cross( p1, p2 )
+      crossed_pool << [c1, fitness(c1, target)]
+      crossed_pool << [c2, fitness(c2, target)]
+    else
+      crossed_pool << temp.shift
+      crossed_pool << temp.shift
+    end
   end
 
   if temp.size == 1
@@ -116,7 +121,6 @@ def crossover( pool, target )
   #    crossed_pool << [p1, fitness] if crossed_pool.size < pool.size
   #  end
   #end
-
   #crossed_pool
 end
 #crossover(pop, 'hello world')
@@ -144,9 +148,9 @@ def mutate( pool, target )
     mutated_pool << [mut_c, fitness(mut_c, target)]
   end
 
-  if pool.size != POOL_SIZE or mutated_pool.size != POOL_SIZE or mutated_pool.size == 0
-    raise "Mutation failure! Pool size is #{pool.size}"
-  end
+  #if pool.size != POOL_SIZE or mutated_pool.size != POOL_SIZE or mutated_pool.size == 0
+  #  raise "Mutation failure! Pool size is #{pool.size}"
+  #end
 
   pool
 end
