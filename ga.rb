@@ -3,7 +3,7 @@
 POPULATION_SIZE = 10000
 POOL_SIZE = Integer( POPULATION_SIZE * 0.2 ) # pool is 20% of population
 RAND = Random.new
-DICTIONARY = ('a'..'z').to_a << ' '
+DICTIONARY = ('a'..'z').to_a + ('A'..'Z').to_a + ['!', ',', ' ']
 
 def ga( target = 'hello' )
   population = initialise_population target
@@ -169,4 +169,4 @@ def done?( population )
   end
 end
 
-ga 'hello world'
+ga 'Hello, World!'
