@@ -1,7 +1,7 @@
 #! usr/local/ruby
 
 POPULATION_SIZE = 10000
-POOL_SIZE = Integer( POPULATION_SIZE * 0.2 ) # pool is 5% of population
+POOL_SIZE = Integer( POPULATION_SIZE * 0.2 ) # pool is 20% of population
 RAND = Random.new
 DICTIONARY = ('a'..'z').to_a << ' '
 
