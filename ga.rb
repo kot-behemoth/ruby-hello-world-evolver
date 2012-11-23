@@ -76,31 +76,48 @@ end
 #pool, pop = select_pool( p )
 
 def crossover( pool, target )
+  temp = Array.new(pool).shuffle
   crossed_pool = Array.new
 
   # PROBLEM HERE!!!!
 
   # p1, p2 - parents
   # c1, c2 - children
-  pool.each do |p1, fitness|
-    if RAND.rand <= 0.7 # 80% chance
-      # Find the second parent to crossover with
-      p2 = nil
-      begin
-        p2 = pool.sample[0]
-      end while p2 == p1 or p2.nil?
+  while temp.size > 1
+    p1 = temp.shift[0]
+    p2 = temp.shift[0]
 
-      c1, c2 = cross( p1, p2 )
+    c1, c2 = cross( p1, p2 )
+    crossed_pool << [c1, fitness(c1, target)]
+    crossed_pool << [c2, fitness(c2, target)]
+  end
 
-      # HACK
-      crossed_pool << [c1, fitness(c1, target)] if crossed_pool.size < pool.size
-      crossed_pool << [c2, fitness(c2, target)] if crossed_pool.size < pool.size
-    else
-      crossed_pool << [p1, fitness] if crossed_pool.size < pool.size
-    end
+  if temp.size == 1
+    p = temp.shift[0]
+    crossed_pool << [p, fitness(p, target)]
   end
 
   crossed_pool
+
+  #pool.each do |p1, fitness|
+  #  if RAND.rand <= 0.7 # 80% chance
+  #    # Find the second parent to crossover with
+  #    p2 = nil
+  #    begin
+  #      p2 = pool.sample[0]
+  #    end while p2 == p1 or p2.nil?
+
+  #    c1, c2 = cross( p1, p2 )
+
+  #    # HACK
+  #    crossed_pool << [c1, fitness(c1, target)] if crossed_pool.size < pool.size
+  #    crossed_pool << [c2, fitness(c2, target)] if crossed_pool.size < pool.size
+  #  else
+  #    crossed_pool << [p1, fitness] if crossed_pool.size < pool.size
+  #  end
+  #end
+
+  #crossed_pool
 end
 #crossover(pop, 'hello world')
 
