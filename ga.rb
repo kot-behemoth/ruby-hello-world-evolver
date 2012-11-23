@@ -80,6 +80,10 @@ def crossover( pool, target )
   temp = Array.new(pool)#.shuffle!
 
   # PROBLEM HERE!!!!
+  # can perhaps use
+  #   p = temp.shift
+  #   t = temp.sample
+  #   temp.remove(t)
 
   # p1, p2 - parents
   # c1, c2 - children
