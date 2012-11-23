@@ -35,8 +35,6 @@ def eval_population( population, target )
     [candidate, fitness( candidate, target )]
   end
 end
-#p = initialise_population( 'hello world' )
-#p = eval_population( p, 'hello world' )
 
 # We're just doing a simple Euclidean distance per character
 # from the target string
@@ -63,7 +61,6 @@ def select_pool( population, counter )
 
   pool = sorted_population[0...POOL_SIZE]
   pop = sorted_population[POOL_SIZE..(population.size)]
-  #puts "POOL #{pool.size} POP #{pop.size}"
 
   raise "Wrong splitting!" unless pool.size + pop.size == population.size
 
