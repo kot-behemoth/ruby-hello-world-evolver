@@ -123,7 +123,7 @@ end
 
 def cross( p1, p2 )
   length = p1.length
-  offset = RAND.rand( 1...length )
+  offset = RAND.rand( 0...length )
   c1 = p1[0...offset] + p2[offset...length]
   c2 = p2[0...offset] + p1[offset...length]
 
