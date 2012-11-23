@@ -7,16 +7,18 @@ DICTIONARY = ('a'..'z').to_a << ' '
 
 def ga( target = 'hello' )
   population = initialise_population target
+  counter = 0
 
   pool = pop_fit = []
   # Compute fitness values
   pop_fit = eval_population population, target
 
   while !done? pop_fit
-    pool, pop_fit = select_pool pop_fit
+    pool, pop_fit = select_pool pop_fit, counter
     pool = crossover pool, target
     pool = mutate pool, target
     pop_fit = merge pool, pop_fit
+    counter += 1
   end
 end
 
@@ -56,7 +58,7 @@ end
 #fitness( 'gello world', 'hello world' )
 
 # INPUT population is an array of value-fitness tuples
-def select_pool( population )
+def select_pool( population, counter )
   raise "Something's wrong with population!" unless population.size == POPULATION_SIZE
 
   sorted_population = population.sort_by! { |v| v[1] }
@@ -67,7 +69,7 @@ def select_pool( population )
 
   raise "Wrong splitting!" unless pool.size + pop.size == population.size
 
-  puts pool[0].join(' ')
+  puts "#{pool[0].join(' ')} #{counter.to_s}"
 
   return pool, pop
 end
